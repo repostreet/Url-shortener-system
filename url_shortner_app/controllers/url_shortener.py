@@ -78,7 +78,7 @@ class UrlShortenerClass:
         try:
             last_inserted = settings.LastInsertedCounter.find_one_and_update(
                 {}, {'$inc': {'counter': 1}}, upsert=True) or {}
-            last_inserted = last_inserted.get('counter', 1)
+            last_inserted = last_inserted.get('counter', 0)
             incr_counter = last_inserted + 1
 
             while incr_counter > 0:
@@ -94,7 +94,7 @@ class UrlShortenerClass:
                 {'original_url': cleaned_url},
                 short_url_data, upsert=True)
 
-            response = 'Short Url created'
+            response = 'Short Url created. Reload the page to see it.'
 
         except (errors.ServerSelectionTimeoutError,
                 errors.OperationFailure) as e:
