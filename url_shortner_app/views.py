@@ -13,13 +13,13 @@ FORBIDDEN_MESSAGE = {'message': 'Method not allowed'}
 
 
 def home(request):
-    """Some docs string."""
+    """Main page of the app controller."""
     context = {'Message': 'Welcome to home.'}
     return render(request, 'home.html', context)
 
 
 def shorten_url(request):
-    """Some docs string."""
+    """API to shorten url."""
     if request.method == 'POST':
         response, status_code = UrlShortenerClass(request)()
         return JsonResponse(response, status=status_code)
@@ -28,7 +28,7 @@ def shorten_url(request):
 
 
 def shortend_urls(request):
-    """Some doc string."""
+    """API ro retrieve list of all shortened urls."""
     if request.method == 'GET':
         response, status_code = url_list(request)
         return JsonResponse(response, status=status_code, safe=False)
@@ -37,7 +37,7 @@ def shortend_urls(request):
 
 
 def fetch_original_url(request):
-    """Some docs string."""
+    """API to fetch the original url from shortened one."""
     if request.method == 'POST':
         response, status_code = get_original_url(request)
         return JsonResponse(response, status=status_code, safe=False)
@@ -46,7 +46,7 @@ def fetch_original_url(request):
 
 
 def delete_url(request):
-    """Some docs string."""
+    """API to delete shortened url."""
     if request.method == 'POST':
         response, status_code = delete_short_url(request)
         return JsonResponse(response, status=status_code, safe=False)
@@ -55,7 +55,7 @@ def delete_url(request):
 
 
 def redirect_url(request, short_url):
-    """Some docs string."""
+    """API to redirect shortened url to original url."""
     if request.method == 'GET':
         url = get_redirect_url(request, short_url)
         if url:
