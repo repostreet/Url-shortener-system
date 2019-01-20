@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+        <title>Simple Dashboard</title>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Javascripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+
+        <script src="{% static 'js/app.js' %}"></script>
+
+        <style type="text/css">
+            body {
+                font-family: 'Quicksand', sans-serif;
+            }
+            a {
+                color: #3c763df2;
+            }
+            #sex_id, #relationship_id, #race_id {
+                display: none;
+            }
+        </style>
+
+
+    </head>
+    <body ng-app="pocapp">
+        <div class="container">
+            <!-- Static navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Aalgro</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../navbar-fixed-top/">Hello welcome!</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+                <!--/.container-fluid -->
+            </nav>
+            <div class="col-md-12 text-center" ng-controller="urlSubmitController">
+                <div>
+                    <h3>Create a shortened url</h3>
+                    <form ng-submit="postUrl()">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="url" placeholder="Enter full url" name="email" ng-model='full_url' style="margin: auto; width: 50%">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <h3>[[ message ]]</h3>
+                </div>
+            </div>
+            <div class="col-md-12 text-center" ng-controller="listUrl">
+                <h3>All shortened urls</h3>
+                <div>
+                    <ul class="nav nav-pills">
+                        <li role="" class="dropdown" ng-repeat="url_obj in all_short_urls">
+                            <a style="color: #3c763dd6; font-weight: bold;" href="[[ url_obj.shortend_url ]]" target="_blank">[[ url_obj.shortend_url ]]</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
